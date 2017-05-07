@@ -1,10 +1,13 @@
 {
   "name": "pokedecss-generator",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "Generator for pokedecss.com",
   "main": "index.js",
   "scripts": {
     "test": "jest"
+  },
+  "bin": {
+    "pokedecss": "cli.js"
   },
   "repository": {
     "type": "git",
@@ -23,7 +26,9 @@
   "dependencies": {
     "canvas": "^1.6.5",
     "color": "^1.0.3",
+    "globby": "^6.1.0",
     "incremental-id-generator": "^0.1.0",
-    "lodash.uniqby": "^4.7.0"
+    "lodash.uniqby": "^4.7.0",
+    "meow": "^3.7.0"
   }
 }

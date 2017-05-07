@@ -10,6 +10,8 @@ const files = {
 
 };
 
+let colorMap = new Map();
+
 function readData(path) {
   const filename = path.split(/[\\/]/).pop().split('.').shift();
   const Image = Canvas.Image;
@@ -34,13 +36,19 @@ function readData(path) {
   colors = unique(colors, (color) => color.string());
 }
 
-readData('./pikachu.png');
-readData('./glumanda.png');
+module.exports = (arr) => {
+  arr.forEach(readData);
 
-const colorMap = colors.reduce((map, color) => {
-  map.set(color.rgb().string(), nextID());
-  return map;
-}, new Map())
+  colorMap = colors.reduce((map, color) => {
+    map.set(color.rgb().string(), nextID());
+    return map;
+  }, colorMap);
+
+  printColorMap(colorMap);
+  printFilesScss(files);
+};
+
+
 
 function printColorMap(map) {
   console.log(`$colors: (`);
@@ -50,7 +58,6 @@ function printColorMap(map) {
   console.log(`);`)
 }
 
-printColorMap(colorMap);
 
 function printImage(img) {
   const Image = Canvas.Image;
@@ -82,5 +89,3 @@ function printFilesScss(data) {
   });
   console.log(`);`);
 }
-
-printFilesScss(files);
